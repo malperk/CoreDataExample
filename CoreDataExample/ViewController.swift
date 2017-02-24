@@ -17,6 +17,12 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         title = "\"The List\""
         tvMain.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        do {
+            self.items = try getAll(inEntity: "Item") as! [NSManagedObject]
+            self.tvMain.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     // MARK: - AddItem
@@ -49,17 +55,15 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
 
     // MARK: - SaveItem
-    func saveItem(name: String) {
-//        do {
-//            saveItem(name: <#T##String#>)
-//            let object = try getObject(name: "Item")
-//            object.setValue(name, forKey: "name")
-//            try persistentContainer.viewContext.save()
-//            items.append(object)
-//
-//        } catch let error {
-//            print("Error: \(error.localizedDescription)")
-//        }
+    func saveItem(name : String) {
+        do {
+            let object = try getBlankEntityWith(name: "Item")
+            object.setValue(name, forKey: "name")
+            try toSaveContext()
+            self.items.append(object)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     // MARK: - UITableViewDataSource
