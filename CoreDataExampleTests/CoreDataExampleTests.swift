@@ -7,30 +7,81 @@
 //
 
 import XCTest
+import CoreData
+
 @testable import CoreDataExample
 
 class CoreDataExampleTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMain() {
+        getContainer()
+        getObject()
+        getWrongObject()
+        deleteAll()
+        saveItem()
+        fetc()
+        deleteItem()
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func getContainer() {
+        let container = persistentContainer
+        XCTAssertNotNil(container)
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func getObject() {
+        let object = try! getBlankEntityWith(name: "Item")
+        XCTAssertNotNil(object)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func getWrongObject() {
+        do {
+            let object = try getBlankEntityWith(name: "WrongObject")
+            XCTAssertNil(object)
+        } catch let error {
+            XCTAssertNotNil(error)
+            XCTAssertEqual(error as? CoreDataError, CoreDataError.entityNotfound(name: "WrongObject"))
         }
     }
-    
+    func deleteAll() {
+        do {
+            try deleteAllIn(entity: "Item")
+            let newData = try getAll(inEntity: "Item")
+            XCTAssertEqual(newData.count, 0)
+        } catch {
+            XCTAssert(false)
+        }
+
+    }
+    func saveItem() {
+        do {
+            let object = try getBlankEntityWith(name: "Item")
+            object.setValue("TestSave", forKey: "name")
+            try toSaveContext()
+        } catch let error {
+            XCTAssertNotNil(error)
+        }
+    }
+
+    func fetc() {
+        do {
+            let request: NSFetchRequest<Item> = Item.fetchRequest()
+            request.predicate = NSPredicate.init(format: "name == %@", "TestSave")
+            let data = try persistentContainer.viewContext.fetch(request)
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data.count, 1)
+        } catch {
+            XCTAssert(false)
+        }
+    }
+
+    func deleteItem() {
+        do {
+            let request: NSFetchRequest<Item> = Item.fetchRequest()
+            request.predicate = NSPredicate.init(format: "name == %@", "TestSave")
+            let data = try persistentContainer.viewContext.fetch(request)
+            persistentContainer.viewContext.delete(data[0])
+            try toSaveContext()
+            let newData = try persistentContainer.viewContext.fetch(request)
+            XCTAssertNotNil(newData)
+            XCTAssertEqual(newData.count, 0)
+        } catch {
+            XCTAssert(false)
+        }
+    }
 }

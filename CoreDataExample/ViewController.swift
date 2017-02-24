@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tvMain: UITableView!
-    var items = [String]()
+    var items = [NSManagedObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                                        handler: { (_: UIAlertAction) -> Void in
 
                                            let textField = alert.textFields!.first
-                                           self.items.append(textField!.text!)
+                                           self.saveItem(name: (textField?.text)!)
                                            self.tvMain.reloadData()
         })
 
@@ -47,6 +48,20 @@ class ViewController: UIViewController, UITableViewDataSource {
         present(alert, animated: true, completion: nil)
     }
 
+    // MARK: - SaveItem
+    func saveItem(name: String) {
+//        do {
+//            saveItem(name: <#T##String#>)
+//            let object = try getObject(name: "Item")
+//            object.setValue(name, forKey: "name")
+//            try persistentContainer.viewContext.save()
+//            items.append(object)
+//
+//        } catch let error {
+//            print("Error: \(error.localizedDescription)")
+//        }
+    }
+
     // MARK: - UITableViewDataSource
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return items.count
@@ -54,7 +69,8 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell!.textLabel!.text = items[indexPath.row]
+        let item = items[indexPath.row]
+        cell!.textLabel!.text = item.value(forKey: "name") as? String
         return cell!
     }
 

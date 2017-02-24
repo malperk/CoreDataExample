@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E47011331E5EF5010089FDD5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47011321E5EF5010089FDD5 /* CoreDataHelper.swift */; };
+		E47011351E5EF6EA0089FDD5 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47011341E5EF6EA0089FDD5 /* CoreDataError.swift */; };
+		E47011361E5EF93B0089FDD5 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47011341E5EF6EA0089FDD5 /* CoreDataError.swift */; };
+		E47011371E5EF93E0089FDD5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47011321E5EF5010089FDD5 /* CoreDataHelper.swift */; };
 		E4946F4E1E5EC19D0014FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4946F4D1E5EC19D0014FC73 /* AppDelegate.swift */; };
 		E4946F501E5EC19D0014FC73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4946F4F1E5EC19D0014FC73 /* ViewController.swift */; };
 		E4946F531E5EC19D0014FC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4946F511E5EC19D0014FC73 /* Main.storyboard */; };
@@ -35,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E47011321E5EF5010089FDD5 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		E47011341E5EF6EA0089FDD5 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		E4946F4A1E5EC19D0014FC73 /* CoreDataExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4946F4D1E5EC19D0014FC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4946F4F1E5EC19D0014FC73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +112,8 @@
 				E4946F591E5EC19D0014FC73 /* LaunchScreen.storyboard */,
 				E4946F5C1E5EC19D0014FC73 /* Info.plist */,
 				E4946F541E5EC19D0014FC73 /* CoreDataExample.xcdatamodeld */,
+				E47011321E5EF5010089FDD5 /* CoreDataHelper.swift */,
+				E47011341E5EF6EA0089FDD5 /* CoreDataError.swift */,
 			);
 			path = CoreDataExample;
 			sourceTree = "<group>";
@@ -264,6 +272,8 @@
 			files = (
 				E4946F501E5EC19D0014FC73 /* ViewController.swift in Sources */,
 				E4946F4E1E5EC19D0014FC73 /* AppDelegate.swift in Sources */,
+				E47011351E5EF6EA0089FDD5 /* CoreDataError.swift in Sources */,
+				E47011331E5EF5010089FDD5 /* CoreDataHelper.swift in Sources */,
 				E4946F561E5EC19D0014FC73 /* CoreDataExample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +282,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E47011371E5EF93E0089FDD5 /* CoreDataHelper.swift in Sources */,
 				E4946F661E5EC19D0014FC73 /* CoreDataExampleTests.swift in Sources */,
+				E47011361E5EF93B0089FDD5 /* CoreDataError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +523,7 @@
 				E4946F771E5EC19D0014FC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4946F781E5EC19D0014FC73 /* Build configuration list for PBXNativeTarget "CoreDataExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +532,7 @@
 				E4946F7A1E5EC19D0014FC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4946F7B1E5EC19D0014FC73 /* Build configuration list for PBXNativeTarget "CoreDataExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +541,7 @@
 				E4946F7D1E5EC19D0014FC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
